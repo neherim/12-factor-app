@@ -1,0 +1,307 @@
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_EXTRA_CSS: ./css/ember.css
+#+REVEAL_EXTRA_CSS: ./css/local.css
+#+REVEAL_THEME: none
+#+REVEAL_TRANS: fade
+#+REVEAL_DEFAULT_FRAG_STYLE: roll-in
+#+REVEAL_PLUGINS: (notes highlight)
+#+REVEAL_HIGHLIGHT_CSS: https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/androidstudio.min.css
+#+REVEAL_DEFAULT_FRAG_STYLE: roll-in
+#+OPTIONS: toc:nil num:nil reveal_slide_number:nil author:nil date:nil timestamp:nil
+#+REVEAL_INIT_OPTIONS: navigationMode:linear
+#+REVEAL_HLEVEL: 0
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./css/local.css" />
+
+#+title: 12 Factor App 12 Years Later
+
+* The Twelve Factors
+
+#+BEGIN_LARGE_SRC
+1. Codebase
+2. Dependencies
+3. Config
+4. Backing services
+5. Build, release, run
+6. Processes
+7. Port binding
+8. Concurrency
+9. Disposability
+10. Dev/prod parity
+11. Logs
+12. Admin processes
+#+END_LARGE_SRC
+
+
+#+begin_notes
+The twelve-factor app is a methodology for building software-as-a-service apps. It was created in 2011 by Heroku's co-founder Adam Wiggins.
+
+Heroku is a cloud platform as a service (PaaS), launched in 2009. Since launch they only supported applications written in Ruby for a long time. So it safe to say that 12 factors was grew out of the Ruby on Rails framework arhitecture, and were intended mainly for monolith applications, witch made up the majority of Heroku hosting. Microservices had not even started to gain popularity at that time. So let's see how relevant these guidelines are now.
+#+end_notes
+
+
+#+REVEAL: split
+#+begin_notes
+Следование этой методологии позволит добиться следующего:
+
+Twelve factor methodology provide a set of guidelines for helping developers and organizations to design and build cloud-native applications
+#+end_notes
+
+- Ability to scale up
+- Continius delivery
+- Ready for runing in cloud
+
+
+* Codebase
+One codebase tracked in revision control, many deploys
+
+#+begin_quote
+There is always a one-to-one correlation between the codebase and the app:
+- If there are multiple codebases, it’s not an app – it’s a distributed system. Each component in a distributed system is an app, and each can individually comply with twelve-factor.
+- Multiple apps sharing the same code is a violation of twelve-factor. The solution here is to factor shared code into libraries which can be included through the dependency manager.
+#+end_quote
+
+#+begin_notes
+Монорепозитории
+#+end_notes
+
+* Dependencies
+Explicitly declare and isolate dependencies
+
+#+begin_quote
+A twelve-factor app never relies on implicit existence of system-wide packages.
+#+end_quote
+
+#+begin_quote
+Twelve-factor apps also do not rely on the implicit existence of any system tools. While these tools may exist on many or even most systems, there is no guarantee that they will exist on all systems where the app may run in the future, or whether the version found on a future system will be compatible with the app.
+#+end_quote
+
+#+begin_notes
+Все зависимости приложения должны быть явно определены в его скрипте сборки, нельзя рассчитывать, что они будут в системе. В идеале сборка вашего приложения должна запускаться одной командой с минимальной предварительной конфигурацией системы. Также как и запуск. Новый разработчик, который скачал ваш код не должен тартить пол дня на выполнение многостоничной инструкции, только чтобы собрать приожение. Сами сборки также должны быть повторяемыми, не зависимо от окружения, на котором собираются.
+#+end_notes
+
+#+REVEAL: split
+#+begin_notes
+Помимо явного определения всех зависимостей я бы рекомендовал использовать следующие подходы для сборки приложений:
+#+end_notes
+1. Add a script to your application repository that downloads the claimed version of the build tool.
+
+   #+begin_notes
+   Скрипт для скачивания и запуска нужной версии билд тула должен быть в репозитории. Не заставляйте разработчика устанавливать необходимые для сборки вашего кода версии тулинга, прежде чем начать работать с кодом. Для java в зависимости используемой системы сборки существуют библиотеки gradle-wrapper и maven-wrapper
+   #+end_notes
+
+3. Store dependencies in self-hosted private artifacts repository
+   #+begin_notes
+   Это позволит контролировать какие именно зависимости используются ваших проектах. Особенно актуально после череды проблем с удалением и подменой репозиториев в том же npm
+   #+end_notes
+
+4. Run build in docker container
+
+   #+begin_notes
+   Это позволяет изолировать системные зависимости для сборки вашего проекта. Это позволяет агентам сборки оставаться настолько простыми, насколько это возможно. Только операционная система и докер. Вся магия сборки просиходит внутри контейнеров с jdk, go.
+   #+end_notes
+
+
+* Config
+Store config in the environment
+
+#+begin_quote
+The twelve-factor app stores config in environment variables.
+Another approach to config is the use of config files which are not checked into revision control, such as config/database.yml in Rails. This is a huge improvement over using constants which are checked into the code repo, but still has weaknesses: it’s easy to mistakenly check in a config file to the repo; there is a tendency for config files to be scattered about in different places and different formats, making it hard to see and manage all the config in one place. Further, these formats tend to be language- or framework-specific.
+#+end_quote
+
+#+begin_notes
+A:External config file not so bad, if its well structured. Env variables can turn in to mess.
+Because when you have 15 variables, managing them becomes way easier if they are in a single file.
+#+end_notes
+
+#+REVEAL: split
+** External configuration store
+#+ATTR_HTML: :width 80%
+[[./img/external-configuration-store.excalidraw.png]]
+
+- Change configuration at runtime
+
+- Share settings between multiple applications
+
+- Simplify administration of multiple applications
+
+- Logging access to the configuration store
+
+- Store and manage secrets in one place
+
+
+
+
+* Backing services
+Treat backing services as attached resources
+
+#+begin_quote
+The code for a twelve-factor app makes no distinction between local and third party services.
+#+end_quote
+
+
+* Build, release, run
+Strictly separate build and run stages
+
+#+begin_quote
+The twelve-factor app uses strict separation between the build, release, and run stages.
+#+end_quote
+
+As code is merged and tested, each build result image (or binary) should be stored by some mechanism where it can be requested for later release and deployment. This separation allows for a simpler and less error-prone development cycle.
+
+* Processes
+Execute the app as one or more stateless processes
+
+
+#+begin_quote
+Twelve-factor processes are stateless and share-nothing.
+#+end_quote
+
+#+begin_quote
+The memory space or filesystem of the process can be used as a brief, single-transaction cache. For example, downloading a large file, operating on it, and storing the results of the operation in the database. The twelve-factor app never assumes that anything cached in memory or on disk will be available on a future request or job – with many processes of each type running, chances are high that a future request will be served by a different process. Even when running only one process, a restart (triggered by code deploy, config change, or the execution environment relocating the process to a different physical location) will usually wipe out all local (e.g., memory and filesystem) state.
+#+end_quote
+
+* Port binding
+Export services via port binding
+
+#+begin_quote
+The twelve-factor app is completely self-contained
+#+end_quote
+
+
+* Concurrency
+Scale out via the process model
+
+#+begin_quote
+In the twelve-factor app, processes are a first class citizen.
+#+end_quote
+
+* Disposability
+Maximize robustness with fast startup and graceful shutdown
+
+#+begin_quote
+The twelve-factor app’s processes are disposable, meaning they can be started or stopped at a moment’s notice.
+#+end_quote
+
+#+begin_quote
+Processes shut down gracefully when they receive a SIGTERM signal from the process manager.
+#+end_quote
+
+
+Start-up checks are crucial to ensure systems are operating and functional. Health checks ensure the system continues in this state or sees itself removed from rotation.
+
+I see the same lack of care during the shutdown process; it's relatively complex and hard to do right, coupled with the age-old argument of 'what does it matter if we do it cleanly? It won't survive the process.'. Well, if not done correctly in a distributed system, it can have cascading effects on other systems that rely on it. Additionally, if ignored can lead to degraded system reliability and, eventually, customer impact.
+
+
+A: Example? Kafka client if not properly disconnected will remain in the consumer group until timeout, blocking connection attempts from another consumers
+
+
+* Dev/prod parity
+Keep development, staging, and production as similar as possible
+
+#+begin_quote
+- The time gap: A developer may work on code that takes days, weeks, or even months to go into production.
+- The personnel gap: Developers write code, ops engineers deploy it.
+- The tools gap: Developers may be using a stack like Nginx, SQLite, and OS X, while the production deploy uses Apache, MySQL, and Linux.
+#+end_quote
+
+#+begin_quote
+The twelve-factor app is designed for continuous deployment by keeping the gap between development and production small.
+#+end_quote
+
+~transform to tabel~
+Traditional app	Twelve-factor app
+Time between deploys	Weeks	Hours
+Code authors vs code deployers	Different people	Same people
+Dev vs production environments	Divergent	As similar as possible
+
+A:
+Time between deploys - autodeploy by commit on staging
+Code authors vs code deployers - autodeploy by commit on staging
+Dev vs production environments - Docker + try to achieve at least the same memory consumption on the staging and prod environments
+
+
+#+begin_quote
+The twelve-factor developer resists the urge to use different backing services between development and production, even when adapters theoretically abstract away any differences in backing services. Differences between backing services mean that tiny incompatibilities crop up, causing code that worked and passed tests in development or staging to fail in production. These types of errors create friction that disincentivizes continuous deployment. The cost of this friction and the subsequent dampening of continuous deployment is extremely high when considered in aggregate over the lifetime of an application.
+#+end_quote
+
+Test containers example
+
+
+* Logs
+Treat logs as event streams
+
+#+begin_quote
+A twelve-factor app never concerns itself with routing or storage of its output stream.
+#+end_quote
+
+#+begin_quote
+It should not attempt to write to or manage logfiles. Instead, each running process writes its event stream, unbuffered, to stdout.
+In staging or production deploys, each process’ stream will be captured by the execution environment, collated together with all other streams from the app, and routed to one or more final destinations for viewing and long-term archival.
+#+end_quote
+
+#+begin_notes
+During local development, the developer will view this stream in the foreground of their terminal to observe the app’s behavior.
+
+
+This factor has become its industry even though the way Adam wrote the factor made it seem like it was someone else's problem. This has primarily changed from something done with the output of applications (logs) to something applications should concern themselves with absolutely.
+
+As applications evolve, they will need to track logs, metrics and traces to truly understand and maintain their systems as they grow. Therefore, this factor likely needs to be updated to reflect application should be observable without the need to modify said system.
+
+
+A: logs rotation, log storage... to complicated topics to implement in each application
+
+write about json logging and structural logging
+#+end_notes
+
+
+* Admin processes
+Run admin/management tasks as one-off processes
+
+#+begin_quote
+Admin code must ship with application code to avoid synchronization issues.
+#+end_quote
+
+
+Example: Run database migration as part of applications startup process
+
+
+* History
+#+ATTR_HTML: :width 100%
+[[./img/heroku-timeline.png]]
+
+#+begin_notes
+Heroku set a new standard for developer experience. To deploy your application, you pushed code to git and received a URL. git push heroku main. That's it.
+
+`git push heroku main` - for run your application
+
+Heroku would build your application remotely (in the cloud) and deploy it to their infrastructure. Developers weren't used to deployment being this easy or fast. Heroku was ahead of its time and “serverless” in the sense you didn't have to manage servers yourself.
+
+In 2006, Amazon Web Services (AWS) launched EC2, making it easy to run compute on-demand. Developers didn't need to purchase, set up, and manage their own infrastructure anymore – they could pay for cloud compute as needed.
+
+
+The methodology was drafted by developers at Heroku, a platform-as-a-service company, and was first presented by Adam Wiggins circa 2011.[1]
+March 20, 2013 - Docker release
+9 September 2014 - Kubernetes release
+
+In September 2017, Heroku addopted docker
+
+
+What developers loved about Heroku was that they didn't have to manage infrastructure. Somewhere along the way from monolith to microservices, application developers ended up doing DevOps again. Infrastructure as Code (IaC) tools like Terraform, AWS CDK, and Pulumi enabled a more lean DevOps experience, but still required managing, scaling, and debugging that infrastructure.
+
+A:
+Heroku has closed infrostracture, vendor lock and black-box expirience, if you have special requirements - Heroku may be not right place for you. Too many restirictions.
+
+In fact, what users expect is a "white-box" experience. They want to customize the infrastructure and replace or upgrade the existing functions of the platform in parallel, rather than simply build on the capabilities provided by the platform.
+
+Closed and Restricted vs Open and Free
+
+
+A:
+12 Factors was written for monolith on RoR, but it is perfectly fit for todays microservices. Except that it must be 17 or 21 factors instead of 12, including Security And Observability
+#+end_notes
+
+* Link
+- [[https://12factor.net/][The Twelve-Factor App]]
+- [[https://architecturenotes.co/12-factor-app-revisited/][12 Factor App Revisited]]
+- [[https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications][7 Missing Factors from 12-Factor Applications]]

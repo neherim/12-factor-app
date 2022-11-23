@@ -24,8 +24,8 @@
 <h1 class="title">12 факторов 11 лет спустя</h1>
 </section>
 
-<section id="slide-org21b6040">
-<h2 id="org21b6040">The Twelve Factors</h2>
+<section id="slide-org094f244">
+<h2 id="org094f244">The Twelve Factors</h2>
 <aside class="notes">
 <p>
 12 Факторные приложения это набор лучших практик для построения приложений как сервисов, готовых к разворачиванию в облаке. Была разработана в 2011 году Адамом Вингсом, одним из основателей Heroku. В данной презентации я хочу проследить, как за 11 лет изменились подходы к разработке приложений
@@ -33,7 +33,7 @@
 
 </aside>
 
-<div class="LARGE_SRC" id="orgf44bad3">
+<div class="LARGE_SRC" id="orgbd3fd5f">
 <ol>
 <li>Кодовая база</li>
 <li>Зависимости</li>
@@ -53,10 +53,10 @@
 </div>
 
 </section>
-<section id="slide-org148884b">
-<h2 id="org148884b">История</h2>
+<section id="slide-orga816cd9">
+<h2 id="orga816cd9">История</h2>
 
-<div id="orge99ed6d" class="figure">
+<div id="orgcd63615" class="figure">
 <p><img src="./img/heroku-timeline.png" alt="heroku-timeline.png" width="100%" />
 </p>
 </div>
@@ -69,21 +69,21 @@ Heroku это облачная платформа как сервис, запу�
 
 
 </section>
-<section id="slide-org355df50">
-<h2 id="org355df50">Кодовая база</h2>
+<section id="slide-org345f916">
+<h2 id="org345f916">Кодовая база</h2>
 <p>
 Одна кодовая база, отслеживаемая в системе контроля версий
 </p>
 
 
-<div id="org9d7f172" class="figure">
+<div id="org4830e1b" class="figure">
 <p><img src="./img/source.excalidraw.png" alt="source.excalidraw.png" width="80%" />
 </p>
 </div>
 
 </section>
-<section id="slide-org5da22a9">
-<h3 id="org5da22a9">Монорепозитории</h3>
+<section id="slide-org1d6fd14">
+<h3 id="org1d6fd14">Монорепозитории</h3>
 <ul>
 <li>Проще делать крупномасштабный рефакторинг кода. Все в одном месте, сразу видно, что может сломаться.</li>
 <li>Более гибкое владение кодом. Любой может сделать Pull Request в твой код. Все видят код друг друга</li>
@@ -100,15 +100,15 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </aside>
 
 </section>
-<section id="slide-orge05d8ed">
-<h2 id="orge05d8ed">Зависимости</h2>
+<section id="slide-orgff6e50b">
+<h2 id="orgff6e50b">Зависимости</h2>
 <p>
 Явно объявляйте и изолируйте зависимости.
 Приложение двенадцати факторов никогда не зависит от неявно существующих, доступных всей системе пакетов.
 </p>
 
 
-<div id="org8ca3f45" class="figure">
+<div id="org98a3bd0" class="figure">
 <p><img src="./img/deps.excalidraw.png" alt="deps.excalidraw.png" width="30%" />
 </p>
 </div>
@@ -120,8 +120,6 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 
 </aside>
 
-</section>
-<section>
 <aside class="notes">
 <p>
 Трудно не согласиться с этим советом, но помимо явного определения всех зависимостей я бы рекомендовал использовать следующие подходы для сборки приложений:
@@ -129,8 +127,8 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 
 </aside>
 </section>
-<section id="slide-org137f599">
-<h3 id="org137f599">Хорошие практики сборки систем</h3>
+<section id="slide-orgb13d754">
+<h3 id="orgb13d754">Хорошие практики сборки систем</h3>
 <ol>
 <li><p>
 Все зависимости приложения должны быть явно определены в скрипте сборки
@@ -184,13 +182,13 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </aside>
 
 </section>
-<section id="slide-orgb58218c">
-<h2 id="orgb58218c">Конфигурация</h2>
+<section id="slide-org477dc45">
+<h2 id="org477dc45">Конфигурация</h2>
 <p>
 Сохраняйте конфигурацию приложения в переменных окружения
 </p>
 
-<div id="orgd63b85c" class="figure">
+<div id="orgb469160" class="figure">
 <p><img src="./img/configuration.excalidraw.png" alt="configuration.excalidraw.png" width="60%" />
 </p>
 </div>
@@ -202,8 +200,8 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </aside>
 
 </section>
-<section id="slide-org7afec89">
-<h3 id="org7afec89">External configuration store</h3>
+<section id="slide-org9fffdb3">
+<h3 id="org9fffdb3">External configuration store</h3>
 <p>
 Внешнее хранилище настроек позволяет:
 </p>
@@ -217,21 +215,21 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 
-<div id="org7bff7cd" class="figure">
+<div id="orga488c26" class="figure">
 <p><img src="./img/external-configuration-store.excalidraw.png" alt="external-configuration-store.excalidraw.png" width="60%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org953415a">
-<h2 id="org953415a">Сторонние службы</h2>
+<section id="slide-org503300a">
+<h2 id="org503300a">Сторонние службы</h2>
 <p>
 Считайте сторонние службы подключаемыми ресурсами. Не делайте различий между локальными и сторонними сервисами.
 </p>
 
 
-<div id="org77c2461" class="figure">
+<div id="org8ba556e" class="figure">
 <p><img src="./img/external-service.excalidraw.png" alt="external-service.excalidraw.png" width="50%" />
 </p>
 </div>
@@ -245,21 +243,21 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 </section>
-<section id="slide-orgbb314d3">
-<h2 id="orgbb314d3">Сборка, релиз, выполнение</h2>
+<section id="slide-orgc1e6ebd">
+<h2 id="orgc1e6ebd">Сборка, релиз, выполнение</h2>
 <p>
 Разделяйте стадии сборки и выполнения. Одна сборка разворачивается на любые контура с возможностью отката к старому релизу
 </p>
 
-<div id="org144f049" class="figure">
+<div id="orgfbddc11" class="figure">
 <p><img src="./img/build-release-run.excalidraw.png" alt="build-release-run.excalidraw.png" width="60%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org8d3b1dd">
-<h2 id="org8d3b1dd">Процессы</h2>
+<section id="slide-orgc615ccb">
+<h2 id="orgc615ccb">Процессы</h2>
 <p>
 Приложения не должны сохранять свое внутреннее состояние
 </p>
@@ -269,7 +267,7 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 
 </ul>
 
-<div id="org77d827e" class="figure">
+<div id="org2372776" class="figure">
 <p><img src="./img/processes.excalidraw.png" alt="processes.excalidraw.png" width="50%" />
 </p>
 </div>
@@ -282,20 +280,20 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </aside>
 
 </section>
-<section id="slide-orgbfaa3aa">
-<h2 id="orgbfaa3aa">Привязка портов</h2>
+<section id="slide-org0e84372">
+<h2 id="org0e84372">Привязка портов</h2>
 <p>
 Приложение двенадцати факторов является полностью самодостаточным, HTTP сервер встроен в приложение.
 </p>
 
-<div id="org46833a2" class="figure">
+<div id="org246524c" class="figure">
 <p><img src="./img/port-binding.excalidraw.png" alt="port-binding.excalidraw.png" width="60%" />
 </p>
 </div>
 
 </section>
-<section id="slide-org7dd212c">
-<h3 id="org7dd212c">Минусы серверов приложений</h3>
+<section id="slide-org7fec784">
+<h3 id="org7fec784">Минусы серверов приложений</h3>
 <ul>
 <li>Требуют установки, что замедляет онбординг разработчика</li>
 <li>Из коробки не работают. Необходимы уникальные знания для поддержки и настройки конкретного сервера</li>
@@ -306,21 +304,21 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 
 
 </section>
-<section id="slide-org31a95ee">
-<h2 id="org31a95ee">Параллелизм</h2>
+<section id="slide-org6fb8e05">
+<h2 id="org6fb8e05">Параллелизм</h2>
 <p>
 Приложение должно маштабироваться горизонтально по необходимости.
 </p>
 
 
-<div id="org9efd240" class="figure">
+<div id="org2ac4079" class="figure">
 <p><img src="./img/concurency.excalidraw.png" alt="concurency.excalidraw.png" width="60%" />
 </p>
 </div>
 
 </section>
-<section id="slide-org364c386">
-<h3 id="org364c386">Плюсы горизонтального маштабирования</h3>
+<section id="slide-orgf134322">
+<h3 id="orgf134322">Плюсы горизонтального маштабирования</h3>
 <ul>
 <li>Ресурсы можно добавлять бесконечно</li>
 <li>Нет остановки сервера при добавлении ресурсов</li>
@@ -330,8 +328,8 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 </section>
-<section id="slide-orgfe5b503">
-<h2 id="orgfe5b503">Утилизируемость</h2>
+<section id="slide-org7c4ea08">
+<h2 id="org7c4ea08">Утилизируемость</h2>
 <p>
 Максимизируйте надёжность с помощью быстрого запуска и корректного завершения работы. Приложения могут быть запущены и остановлены в любой момент.
 </p>
@@ -362,10 +360,10 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 </section>
-<section id="slide-orgfc3e3ff">
-<h3 id="orgfc3e3ff">Проблема двойной записи</h3>
+<section id="slide-org6463c9f">
+<h3 id="org6463c9f">Проблема двойной записи</h3>
 
-<div id="org3e0336b" class="figure">
+<div id="org93b0fb9" class="figure">
 <p><img src="./img/disp1.excalidraw.png" alt="disp1.excalidraw.png" width="60%" />
 </p>
 </div>
@@ -373,7 +371,7 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </section>
 <section>
 
-<div id="orgb62a39e" class="figure">
+<div id="orgb1e05b2" class="figure">
 <p><img src="./img/disp2.excalidraw.png" alt="disp2.excalidraw.png" width="60%" />
 </p>
 </div>
@@ -392,7 +390,7 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </section>
 <section>
 
-<div id="org50d0c1c" class="figure">
+<div id="orgc851dac" class="figure">
 <p><img src="./img/disp3.excalidraw.png" alt="disp3.excalidraw.png" width="60%" />
 </p>
 </div>
@@ -408,8 +406,8 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 </section>
-<section id="slide-org4157beb">
-<h2 id="org4157beb">Паритет окружений разработки и продуктива</h2>
+<section id="slide-org7084b32">
+<h2 id="org7084b32">Паритет окружений разработки и продуктива</h2>
 <p>
 Минимизируйте разрыв между разработкой и работой приложения
 </p>
@@ -422,17 +420,17 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 </ul>
 
 </section>
-<section id="slide-org9d1038b">
-<h3 id="org9d1038b">Различие во времени: Trunk Based Development</h3>
+<section id="slide-org0785daf">
+<h3 id="org0785daf">Различие во времени: Trunk Based Development</h3>
 
-<div id="org869fde6" class="figure">
+<div id="org5b90c8d" class="figure">
 <p><img src="./img/trunk.excalidraw.png" alt="trunk.excalidraw.png" width="60%" />
 </p>
 </div>
 
 </section>
-<section id="slide-org955a3f6">
-<h3 id="org955a3f6">Различие персонала: DevOps -&gt; Team Topologies</h3>
+<section id="slide-org6baf43c">
+<h3 id="org6baf43c">Различие персонала: DevOps -&gt; Team Topologies</h3>
 <aside class="notes">
 <p>
 DevOps это одно из многих понятий в IT, оригинальное значение которого уже потеряно во времени. Сейчас этим словом могут называть вообще все что угодно, из за этого оно сильно потеряло в ценности. Некоторые называют DevOps отдел людей, которые сопровождают kubernetes, другие считают, что это когда фронтенд разработчик переустанавливает Linux на агентах сборки его системы.
@@ -469,8 +467,8 @@ DevOps это одно из многих понятий в IT, оригинал�
 
 </ul>
 </section>
-<section id="slide-org5b2622e">
-<h3 id="org5b2622e">Различие инструментов: Testcontainers</h3>
+<section id="slide-org85d9fad">
+<h3 id="org85d9fad">Различие инструментов: Testcontainers</h3>
 <p>
 Поднимайте локально в docker необходимые сервисы. Используйте библиотеки типа Testcontainers для интеграционного тестирования
 </p>
@@ -494,14 +492,14 @@ public class RedisBackedCacheIntTest {
 
 
 </section>
-<section id="slide-org81cd5c5">
-<h2 id="org81cd5c5">Журналирование</h2>
+<section id="slide-orgfaef441">
+<h2 id="orgfaef441">Журналирование</h2>
 <p>
 Рассматривайте логи как поток событий. Приложение только должно выводить логи в stdout, за сбор и хранение отвечает среда выполнения.
 </p>
 
 
-<div id="org4841471" class="figure">
+<div id="org56244b4" class="figure">
 <p><img src="./img/logs.excalidraw.png" alt="logs.excalidraw.png" width="100%" />
 </p>
 </div>
@@ -514,8 +512,8 @@ public class RedisBackedCacheIntTest {
 </aside>
 
 </section>
-<section id="slide-orgd92b111">
-<h3 id="orgd92b111">Используйте структурное логирование</h3>
+<section id="slide-orgf672426">
+<h3 id="orgf672426">Используйте структурное логирование</h3>
 <p>
 До:
 </p>
@@ -550,8 +548,8 @@ public class RedisBackedCacheIntTest {
 
 
 </section>
-<section id="slide-org17233e9">
-<h2 id="org17233e9">Задачи администрирования</h2>
+<section id="slide-org2ab0386">
+<h2 id="org2ab0386">Задачи администрирования</h2>
 <p>
 Код и скрипты для администрирования должны поставляться вместе с приложением, чтобы избежать проблем с синхронизацией
 </p>
@@ -580,14 +578,14 @@ public class RedisBackedCacheIntTest {
 </ul>
 
 
-<div id="org4791081" class="figure">
+<div id="orgc515eba" class="figure">
 <p><img src="./img/admin-process.excalidraw.png" alt="admin-process.excalidraw.png" width="60%" />
 </p>
 </div>
 
 </section>
-<section id="slide-org9bbffa2">
-<h2 id="org9bbffa2">Заключение</h2>
+<section id="slide-orgd410354">
+<h2 id="orgd410354">Заключение</h2>
 <p>
 Следование 12 факторам позволяет добиться:
 </p>
@@ -608,8 +606,8 @@ public class RedisBackedCacheIntTest {
 </aside>
 
 </section>
-<section id="slide-orgfa10aff">
-<h2 id="orgfa10aff">Link</h2>
+<section id="slide-orgcc2078d">
+<h2 id="orgcc2078d">Link</h2>
 <ul>
 <li><a href="https://12factor.net/">The Twelve-Factor App</a></li>
 <li><a href="https://architecturenotes.co/12-factor-app-revisited/">12 Factor App Revisited</a></li>

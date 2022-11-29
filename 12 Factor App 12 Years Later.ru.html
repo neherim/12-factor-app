@@ -1,40 +1,215 @@
-<!DOCTYPE html>
-<html lang="en">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>12 факторов 11 лет спустя</title>
-<meta name="author" content="Artem Mikhailovskii"/>
-<style type="text/css">
-.underline { text-decoration: underline; }
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/none.css" id="theme"/>
-
-<link rel="stylesheet" href="./css/ember.css"/>
-
-<link rel="stylesheet" href="./css/local.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/androidstudio.min.css"/>
 <link rel="stylesheet" type="text/css" href="./css/local.css" />
 </head>
 <body>
-<div class="reveal">
-<div class="slides">
-<section id="sec-title-slide">
+<div id="content" class="content">
 <h1 class="title">12 факторов 11 лет спустя</h1>
-</section>
 
-<section id="slide-org094f244">
-<h2 id="org094f244">The Twelve Factors</h2>
-<aside class="notes">
+<div id="outline-container-org8cd78b5" class="outline-2">
+<h2 id="org8cd78b5">The Twelve Factors</h2>
+<div class="outline-text-2" id="text-org8cd78b5">
+<div class="notes" id="org86de17c">
 <p>
-12 Факторные приложения это набор лучших практик для построения приложений как сервисов, готовых к разворачиванию в облаке. Была разработана в 2011 году Адамом Вингсом, одним из основателей Heroku. В данной презентации я хочу проследить, как за 11 лет изменились подходы к разработке приложений
+12 факторные приложения это набор практик и принципов для построения приложений как сервисов, готовых к разворачиванию в облаке. Эти принципы были сформулированы в 2011 году Адамом Вингсом, одним из основателей Heroku. В данной презентации предлагаю проследить, как за 11 лет изменились подходы к разработке и автоматизаци.
+Для начала перечислим эти принципы:
 </p>
 
-</aside>
+</div>
 
-<div class="LARGE_SRC" id="orgbd3fd5f">
-<ol>
+<div class="LARGE_SRC" id="orge25f529">
+<ol class="org-ol">
 <li>Кодовая база</li>
 <li>Зависимости</li>
 <li>Конфигурация</li>
@@ -47,130 +222,133 @@
 <li>Паритет разработки/работы приложения</li>
 <li>Журналирование</li>
 <li>Задачи администрирования</li>
-
 </ol>
 
 </div>
+</div>
+</div>
 
-</section>
-<section id="slide-orga816cd9">
-<h2 id="orga816cd9">История</h2>
+<div id="outline-container-orge4e40f8" class="outline-2">
+<h2 id="orge4e40f8">История</h2>
+<div class="outline-text-2" id="text-orge4e40f8">
 
-<div id="orgcd63615" class="figure">
+<div id="org2609103" class="figure">
 <p><img src="./img/heroku-timeline.png" alt="heroku-timeline.png" width="100%" />
 </p>
 </div>
-<aside class="notes">
+<div class="notes" id="org6a2ed21">
 <p>
-Heroku это облачная платформа как сервис, запущенная в 2009 году. С момента запуска она долгое время поддерживала только приложения написанные на Ruby, так что можно сказать, что эти принципы выросли из архитектуры фреймворка Ruby On Rails и предназначалась в основном для монолитных приложений, которые и составляли основную массу приложений на Heroku. В то время микросервисы еще не начали набирать популярность. Давайте же посмотрим, насколько актуальны эти принципы сейчас.
+Heroku это облачная платформа как сервис, запущенная в 2009 году. С момента запуска она долгое время поддерживала только приложения написанные на Ruby, так что можно сказать, что эти принципы выросли из архитектуры фреймворка Ruby On Rails и предназначалась в основном для монолитных приложений, которые и составляли основную массу приложений на Heroku. В то время микросервисы еще не начали набирать популярность, а до релиза docker оставалось 2 года.
 </p>
 
-</aside>
+</div>
+</div>
+</div>
 
 
-</section>
-<section id="slide-org345f916">
-<h2 id="org345f916">Кодовая база</h2>
+<div id="outline-container-orgc03018c" class="outline-2">
+<h2 id="orgc03018c">Кодовая база</h2>
+<div class="outline-text-2" id="text-orgc03018c">
 <p>
 Одна кодовая база, отслеживаемая в системе контроля версий
 </p>
 
+<div class="notes" id="org9a58641">
+<p>
+Сейчас никого не нужно убеждать в ценности системы контроля версий, но в 2011 это не было таким очевидным. 12 факторов ультимативно заявляют, что каждое приложение должно сущестоввать в отдельном репозитории. Это отчасти связано с философией Heroku, где деплой новой версии запускался командой `git push heroku main` и вся работа  с приложением строилась из расчета отдельного git репозитория. Сейчас же часто предпочитают один монорепозиторий на всю компанию, вместо сотни маленьких. Перечислим плюсы монорепозитоиев.
+</p>
 
-<div id="org4830e1b" class="figure">
+</div>
+
+<div id="org2f5293e" class="figure">
 <p><img src="./img/source.excalidraw.png" alt="source.excalidraw.png" width="80%" />
 </p>
 </div>
+</div>
 
-</section>
-<section id="slide-org1d6fd14">
-<h3 id="org1d6fd14">Монорепозитории</h3>
-<ul>
+<div id="outline-container-org377557f" class="outline-3">
+<h3 id="org377557f">Монорепозитории</h3>
+<div class="outline-text-3" id="text-org377557f">
+<ul class="org-ul">
 <li>Проще делать крупномасштабный рефакторинг кода. Все в одном месте, сразу видно, что может сломаться.</li>
 <li>Более гибкое владение кодом. Любой может сделать Pull Request в твой код. Все видят код друг друга</li>
 <li>Проще обеспечить совместимость систем, которые всегда релизятся вместе</li>
 <li>Легче управлять общими зависимостями. Не нужен пакетный менеджер</li>
-
 </ul>
 
-<aside class="notes">
+<div class="notes" id="org73e7f1b">
 <p>
 Google, Facebook, Microsoft и Twitter используют огромные монорепозитории. 80 терабайт кода содержится в монорепозитории Google. Между тем, для этого они используют специальные билд тулы, специальные CI/CD пайплайны, свои системы контроля версий.
 </p>
 
-</aside>
+</div>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-orgff6e50b">
-<h2 id="orgff6e50b">Зависимости</h2>
+<div id="outline-container-org23138a0" class="outline-2">
+<h2 id="org23138a0">Зависимости</h2>
+<div class="outline-text-2" id="text-org23138a0">
 <p>
 Явно объявляйте и изолируйте зависимости.
 Приложение двенадцати факторов никогда не зависит от неявно существующих, доступных всей системе пакетов.
 </p>
 
 
-<div id="org98a3bd0" class="figure">
+<div id="org4af96d4" class="figure">
 <p><img src="./img/deps.excalidraw.png" alt="deps.excalidraw.png" width="30%" />
 </p>
 </div>
 
-<aside class="notes">
+<div class="notes" id="orgb53b435">
 <p>
-В идеале сборка вашего приложения должна запускаться одной командой с минимальной предварительной конфигурацией системы. Также как и запуск. Новый разработчик, который скачал ваш код, не должен тратить пол дня на выполнение многостраничной инструкции, только чтобы собрать приложение. Сами сборки также должны быть повторяемыми, не зависимо от окружения, на котором собираются.
+В идеале сборка вашего приложения должна запускаться одной командой с минимальной предварительной конфигурацией системы. Тоже самое касается и запуска. Новый разработчик, скачав код проекта, не должен тратить пол дня на выполнение многостраничной инструкции, только чтобы собрать приложение. Сами сборки также должны быть повторяемыми, не зависимо от окружения, на котором собираются.
 </p>
 
-</aside>
+</div>
 
-<aside class="notes">
+<div class="notes" id="org3ef2dc1">
 <p>
 Трудно не согласиться с этим советом, но помимо явного определения всех зависимостей я бы рекомендовал использовать следующие подходы для сборки приложений:
 </p>
 
-</aside>
-</section>
-<section id="slide-orgb13d754">
-<h3 id="orgb13d754">Хорошие практики сборки систем</h3>
-<ol>
-<li><p>
-Все зависимости приложения должны быть явно определены в скрипте сборки
-</p>
-<aside class="notes">
-<p>
-Вы не можете рассчитывать, что какие-то зависимости окажутся в системе на момент сборки.
-</p>
-
-</aside></li>
+</div>
+</div>
+<div id="outline-container-org71f6055" class="outline-3">
+<h3 id="org71f6055">Хорошие практики сборки систем</h3>
+<div class="outline-text-3" id="text-org71f6055">
+<ol class="org-ol">
 <li><p>
 Добавьте в ваш репозиторий скрипт для скачивания нужной версии используемой системы сборки
 </p>
-<aside class="notes">
+<div class="notes" id="org08615b6">
 <p>
 Скрипт для скачивания и запуска нужной версии билд тула должен быть в репозитории. Не заставляйте разработчика устанавливать необходимые для сборки вашего кода версии тулинга, прежде чем начать работать с кодом. Для java в зависимости используемой системы сборки существуют библиотеки gradle-wrapper и maven-wrapper
 </p>
 
-</aside></li>
+</div></li>
 <li><p>
 Храните зависимости в приватном репозитории артефактов
 </p>
-<aside class="notes">
+<div class="notes" id="org83730c5">
 <p>
 Это позволит контролировать какие именно зависимости используются ваших проектах. Особенно актуально после череды проблем с удалением и подменой репозиториев в том же npm
 </p>
 
-</aside></li>
+</div></li>
 <li><p>
 Запускайте сборку в docker контейнере
 </p>
-<aside class="notes">
+<div class="notes" id="orge214f22">
 <p>
 Это позволяет изолировать системные зависимости для сборки вашего проекта. Это позволяет агентам сборки оставаться настолько простыми, насколько это возможно. Только операционная система и докер. Вся магия сборки происходит внутри контейнеров с jdk, go.
 </p>
 
-</aside></li>
+</div></li>
 <li>Инструкция по сборке должна находиться в readme файле проекта</li>
-
 </ol>
 
-<aside class="notes">
+<div class="notes" id="orgc1a4b01">
 <p>
 В большинстве случаев этого достаточно, чтобы без особых проблем собрать любую версию приложения из исходников.
 </p>
@@ -179,263 +357,281 @@ Google, Facebook, Microsoft и Twitter используют огромные м�
 В особых случаях может потребоваться воспроизводимая или детерминированная сборка. Когда процесс сборки каждый раз выдает одинаковый, с точностью до бита бинарный файл. Что позволяет удостовериться, что результирующий двоичный код в точности соответствует исходному коду. Но для этого потребуется использовать отдельные сложные билд тулы или особые операционные системы.
 </p>
 
-</aside>
+</div>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-org477dc45">
-<h2 id="org477dc45">Конфигурация</h2>
+<div id="outline-container-orgf848e7f" class="outline-2">
+<h2 id="orgf848e7f">Конфигурация</h2>
+<div class="outline-text-2" id="text-orgf848e7f">
 <p>
 Сохраняйте конфигурацию приложения в переменных окружения
 </p>
 
-<div id="orgb469160" class="figure">
+<div id="org9af5b3a" class="figure">
 <p><img src="./img/configuration.excalidraw.png" alt="configuration.excalidraw.png" width="60%" />
 </p>
 </div>
-<aside class="notes">
+<div class="notes" id="orgf79d629">
 <p>
-Сейчас всем очевидно, что не стоит хранить в коде параметры, которые зависят от среды запуска приложения. Код должен храниться отдельно от конфигурации. В микросервисной архитектуре иногда выносят управление конфигурациями во внешнюю систему под названием External configuration store.
+Сейчас всем очевидно, что не стоит хранить в коде параметры, которые зависят от среды запуска приложения. Код должен храниться отдельно от конфигурации. В современных архитектурах иногда выносят управление конфигурациями во внешнюю систему под названием external configuration store.
 </p>
 
-</aside>
+</div>
+</div>
 
-</section>
-<section id="slide-org9fffdb3">
-<h3 id="org9fffdb3">External configuration store</h3>
+<div id="outline-container-org59e72f8" class="outline-3">
+<h3 id="org59e72f8">External configuration store</h3>
+<div class="outline-text-3" id="text-org59e72f8">
 <p>
 Внешнее хранилище настроек позволяет:
 </p>
-<ul>
-<li>Менять настройки без перезапуска</li>
+<ul class="org-ul">
+<li>Менять настройки без перезапуска, преключать фитча флаги</li>
 <li>Совместно использовать настройки несколькими сервисами</li>
 <li>Упростить администрирование настроек множества приложений</li>
 <li>Логировать доступ к настройкам</li>
 <li>Централизовано хранить и управлять секретами</li>
-
 </ul>
 
 
-<div id="orga488c26" class="figure">
+<div id="org42c8211" class="figure">
 <p><img src="./img/external-configuration-store.excalidraw.png" alt="external-configuration-store.excalidraw.png" width="60%" />
 </p>
 </div>
+</div>
+</div>
+</div>
 
 
-</section>
-<section id="slide-org503300a">
-<h2 id="org503300a">Сторонние службы</h2>
+<div id="outline-container-orgf4afab1" class="outline-2">
+<h2 id="orgf4afab1">Сторонние службы</h2>
+<div class="outline-text-2" id="text-orgf4afab1">
 <p>
 Считайте сторонние службы подключаемыми ресурсами. Не делайте различий между локальными и сторонними сервисами.
 </p>
 
 
-<div id="org8ba556e" class="figure">
+<div id="org5f16119" class="figure">
 <p><img src="./img/external-service.excalidraw.png" alt="external-service.excalidraw.png" width="50%" />
 </p>
 </div>
+<div class="notes" id="org5c92a50">
+<p>
+Нужно всегда помнить, что сервисы сегодня запущенные на одном сервере завтра могут быть запущены на разных, и подходить к их использованию соответствующим образом. Делая вызов стороннего сервиса всегда помните о следующем:
+</p>
 
-<ul>
-<li>Сервисы сегодня запущенные на одном сервере завтра могут быть запущены на разных</li>
+</div>
+<ul class="org-ul">
 <li>Любой вызов внешнего сервиса может закончиться неудачей</li>
 <li>Внешний сервис может стать недоступным на неопределенное время</li>
-<li>При запросе любых сервисов должен устанавливаться таймаут на ответ</li>
-
+<li>При запросе всегда устанавливайте таймаут на ответ</li>
 </ul>
+</div>
+</div>
 
-</section>
-<section id="slide-orgc1e6ebd">
-<h2 id="orgc1e6ebd">Сборка, релиз, выполнение</h2>
+<div id="outline-container-org0792ebb" class="outline-2">
+<h2 id="org0792ebb">Сборка, релиз, выполнение</h2>
+<div class="outline-text-2" id="text-org0792ebb">
 <p>
 Разделяйте стадии сборки и выполнения. Одна сборка разворачивается на любые контура с возможностью отката к старому релизу
 </p>
 
-<div id="orgfbddc11" class="figure">
+<div id="orgcecd991" class="figure">
 <p><img src="./img/build-release-run.excalidraw.png" alt="build-release-run.excalidraw.png" width="60%" />
 </p>
 </div>
+</div>
+</div>
 
-
-</section>
-<section id="slide-orgc615ccb">
-<h2 id="orgc615ccb">Процессы</h2>
+<div id="outline-container-org2c8ab7c" class="outline-2">
+<h2 id="org2c8ab7c">Процессы</h2>
+<div class="outline-text-2" id="text-org2c8ab7c">
 <p>
-Приложения не должны сохранять свое внутреннее состояние
+Приложения не должны сохранять свое внутреннее состояние. Это позволит добиться:
 </p>
-<ul>
+<ul class="org-ul">
 <li>Возможность горизонтального маштабирования</li>
 <li>Перезапуск не приводит к потери информации</li>
-
 </ul>
 
-<div id="org2372776" class="figure">
+<div id="org19775eb" class="figure">
 <p><img src="./img/processes.excalidraw.png" alt="processes.excalidraw.png" width="50%" />
 </p>
 </div>
 
-<aside class="notes">
+<div class="notes" id="org0ee3f7f">
 <p>
 Кеширование и временные хранилища не относится к этому правилу, по определению кэша приложение должно нормально реагировать на потерю данных в нем
 </p>
 
-</aside>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-org0e84372">
-<h2 id="org0e84372">Привязка портов</h2>
+<div id="outline-container-orgc5d8cf4" class="outline-2">
+<h2 id="orgc5d8cf4">Привязка портов</h2>
+<div class="outline-text-2" id="text-orgc5d8cf4">
 <p>
 Приложение двенадцати факторов является полностью самодостаточным, HTTP сервер встроен в приложение.
 </p>
 
-<div id="org246524c" class="figure">
+<div id="org9207710" class="figure">
 <p><img src="./img/port-binding.excalidraw.png" alt="port-binding.excalidraw.png" width="60%" />
 </p>
 </div>
+<div class="notes" id="org9070695">
+<p>
+Нужно признать, что большие сервера приложений остались в прошлом. Сейчас фреймворки вроде Spring предоставляют разработчикам те же возможности, что и сервера приложений.
+</p>
 
-</section>
-<section id="slide-org7fec784">
-<h3 id="org7fec784">Минусы серверов приложений</h3>
-<ul>
+</div>
+</div>
+<div id="outline-container-orgfdb7437" class="outline-3">
+<h3 id="orgfdb7437">Минусы серверов приложений</h3>
+<div class="outline-text-3" id="text-orgfdb7437">
+<ul class="org-ul">
 <li>Требуют установки, что замедляет онбординг разработчика</li>
 <li>Из коробки не работают. Необходимы уникальные знания для поддержки и настройки конкретного сервера</li>
 <li>Поддерживают ограниченный набор технологий. Вы не запустите C# на WebLogic или Tomcat</li>
 <li>Конфигурация расползается между приложением и контейнером</li>
-
 </ul>
+</div>
+</div>
+</div>
 
 
-</section>
-<section id="slide-org6fb8e05">
-<h2 id="org6fb8e05">Параллелизм</h2>
+<div id="outline-container-org5ac315c" class="outline-2">
+<h2 id="org5ac315c">Параллелизм</h2>
+<div class="outline-text-2" id="text-org5ac315c">
 <p>
-Приложение должно маштабироваться горизонтально по необходимости.
+Приложение должно уметь горизонтально маштабироваться при необходимости
 </p>
 
 
-<div id="org2ac4079" class="figure">
+<div id="org53c3607" class="figure">
 <p><img src="./img/concurency.excalidraw.png" alt="concurency.excalidraw.png" width="60%" />
 </p>
 </div>
+</div>
 
-</section>
-<section id="slide-orgf134322">
-<h3 id="orgf134322">Плюсы горизонтального маштабирования</h3>
-<ul>
+<div id="outline-container-orgdc13315" class="outline-3">
+<h3 id="orgdc13315">Плюсы горизонтального маштабирования</h3>
+<div class="outline-text-3" id="text-orgdc13315">
+<ul class="org-ul">
 <li>Ресурсы можно добавлять бесконечно</li>
 <li>Нет остановки сервера при добавлении ресурсов</li>
 <li>Надежнее за счет одновременного запуска приложения на разных машинах</li>
 <li>Случайный запуск двух экземпляров приложения не вызывает проблем</li>
-
 </ul>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-org7c4ea08">
-<h2 id="org7c4ea08">Утилизируемость</h2>
+<div id="outline-container-orge995e57" class="outline-2">
+<h2 id="orge995e57">Утилизируемость</h2>
+<div class="outline-text-2" id="text-orge995e57">
 <p>
 Максимизируйте надёжность с помощью быстрого запуска и корректного завершения работы. Приложения могут быть запущены и остановлены в любой момент.
 </p>
 
-<ul>
+<ul class="org-ul">
 <li><p>
-При завершении работы закройте все соединения и освободите ресурсы
+При штатном завершении работы закройте все соединения и освободите ресурсы
 </p>
-<aside class="notes">
+<div class="notes" id="org01e9d37">
 <p>
 Если приложения не закрывать корректно, то это может привести к деградации производительности всей системы.
 Например, если при завершении не вернуть в RabbitMQ очередь необработанное сообщение - это приведет к задержкам в его обработке. Если консьюмер топика в Kafka не пошлет сигнал отключения - он останется висеть в группе до таймаута.
 </p>
 
-</aside></li>
+</div></li>
 <li><p>
 Убедитесь, что приложение корректно обрабатывает сигнал SIGTERM
 </p>
-<aside class="notes">
+<div class="notes" id="org0eca9c4">
 <p>
 Если вы запускаете приложение в kubernetes - то при завершении работы он посылает сигнал SIGTERM в приложение и ждет 60 секунд. Если по прошествии таймаута приложение не закрывается, то посылается сигнал SIGKILL.
 В случае использования spring-boot убедитесь, что в настройках установлен параметр server.shutdown=graceful. Это настройка говорит серверу, что при получении сигнала SIGTERM необходимо остановить прием новых запросов и завершить обработку старых запросов, и только после этого завершить работу. По умолчанию же приложение на spring-boot при получении SIGTERM экстренно завершает работу
 </p>
 
-</aside></li>
+</div></li>
 <li>Приложение должно быть готово к экстренному завершению в любой момент</li>
-
 </ul>
+</div>
 
-</section>
-<section id="slide-org6463c9f">
-<h3 id="org6463c9f">Проблема двойной записи</h3>
+<div id="outline-container-org697a47c" class="outline-3">
+<h3 id="org697a47c">Проблема двойной записи</h3>
+<div class="outline-text-3" id="text-org697a47c">
 
-<div id="org93b0fb9" class="figure">
+<div id="org6ef2d8b" class="figure">
 <p><img src="./img/disp1.excalidraw.png" alt="disp1.excalidraw.png" width="60%" />
 </p>
 </div>
 
-</section>
-<section>
 
-<div id="orgb1e05b2" class="figure">
+<div id="orgb96d166" class="figure">
 <p><img src="./img/disp2.excalidraw.png" alt="disp2.excalidraw.png" width="60%" />
 </p>
 </div>
 
-</section>
-<section>
 <p>
 Решение
 </p>
-<ul>
+<ul class="org-ul">
 <li>Outbox Pattern</li>
 <li>Change Data Capture</li>
-
 </ul>
 
-</section>
-<section>
 
-<div id="orgc851dac" class="figure">
+<div id="org971c7bf" class="figure">
 <p><img src="./img/disp3.excalidraw.png" alt="disp3.excalidraw.png" width="60%" />
 </p>
 </div>
 
-</section>
-<section>
 <p>
 Решение:
 </p>
-<ul>
+<ul class="org-ul">
 <li>Идемпотентность API</li>
-
 </ul>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-org7084b32">
-<h2 id="org7084b32">Паритет окружений разработки и продуктива</h2>
+<div id="outline-container-org6ee7d36" class="outline-2">
+<h2 id="org6ee7d36">Паритет окружений разработки и продуктива</h2>
+<div class="outline-text-2" id="text-org6ee7d36">
 <p>
 Минимизируйте разрыв между разработкой и работой приложения
 </p>
 
-<ul>
+<ul class="org-ul">
 <li><b><b>Различие во времени:</b></b> разработчик может работать с кодом, который попадет в рабочую версию приложения только через дни, недели или даже месяцы.</li>
 <li><b><b>Различие персонала:</b></b> разработчики пишут код, OPS инженеры разворачивают его.</li>
 <li><b><b>Различие инструментов:</b></b> разработчики могут использовать стек технологий, такой как Nginx, SQLite, и OS X, в то время как при рабочем развертывании используются Apache, MySQL и Linux.</li>
-
 </ul>
+</div>
 
-</section>
-<section id="slide-org0785daf">
-<h3 id="org0785daf">Различие во времени: Trunk Based Development</h3>
+<div id="outline-container-orgc55f98f" class="outline-3">
+<h3 id="orgc55f98f">Различие во времени: Trunk Based Development</h3>
+<div class="outline-text-3" id="text-orgc55f98f">
 
-<div id="org5b90c8d" class="figure">
+<div id="orgc76c5f4" class="figure">
 <p><img src="./img/trunk.excalidraw.png" alt="trunk.excalidraw.png" width="60%" />
 </p>
 </div>
+</div>
+</div>
 
-</section>
-<section id="slide-org6baf43c">
-<h3 id="org6baf43c">Различие персонала: DevOps -&gt; Team Topologies</h3>
-<aside class="notes">
+<div id="outline-container-org76a764d" class="outline-3">
+<h3 id="org76a764d">Различие персонала: DevOps -&gt; Team Topologies</h3>
+<div class="outline-text-3" id="text-org76a764d">
+<div class="notes" id="org911ed3e">
 <p>
 DevOps это одно из многих понятий в IT, оригинальное значение которого уже потеряно во времени. Сейчас этим словом могут называть вообще все что угодно, из за этого оно сильно потеряло в ценности. Некоторые называют DevOps отдел людей, которые сопровождают kubernetes, другие считают, что это когда фронтенд разработчик переустанавливает Linux на агентах сборки его системы.
 </p>
-
 
 <p>
 Не стоит забывать, что поскольку 12 факторов выросли из Paas платформы Heroku, то у них был особый взгляд на DevOps. Действительно, в Heroku разработчик самостоятельно разворачивал и приложение и сервер баз данных, если ему это было необходимо. Вот только делал он это одним кликом мыши на сайте платформы. Никто не шел устанавливать необходимые пакеты и настраивать PostgreSQL, никто не писал Ansible скрипты доставки приложения на контур. И если что-то ломалось - этим занимались инженеры Heroku и чаще всего разработчик даже не замечал, что были какие-то проблемы.
@@ -445,10 +641,10 @@ DevOps это одно из многих понятий в IT, оригинал�
 По теме сокращения разрыва между персоналом мне нравится описание команд, приведенных в книге Team Topologies
 </p>
 
-</aside>
+</div>
 
-<ul>
-<li><b><b>Stream-aligned team</b></b> — команда нацелена на создание и доставку ценности пользователем как можно быстрее. Должна стремиться к максимальной автономности. Цель других типов команд в том, чтобы сократить нагрузку ну stream-aligned teams.</li>
+<ul class="org-ul">
+<li><b><b>Stream-aligned team</b></b> — команда нацелена на создание и доставку ценности пользователем как можно быстрее. Должна стремиться к максимальной автономности. Цель других типов команд в том, чтобы сократить когнитивную нагрузку на stream-aligned teams.</li>
 
 <li><b><b>Enabling team</b></b> — технические консультанты, помогают stream-aligned teams в повышении их возможностей. Разрабатывают библиотеки, рекламируют новые подходы.</li>
 
@@ -458,200 +654,171 @@ DevOps это одно из многих понятий в IT, оригинал�
 <b><b>Platform team</b></b> — предоставляют внутренний сервис для снижения когнитивной нагрузки, которая ложится на stream-aligned команды во время работы над их сервисами.
 </p>
 
-<aside class="notes">
+<div class="notes" id="orgc796f65">
 <p>
 Если разработчик выполняет роль админа, обязанным разбираться в работе агентов gitlab или в том как обновить кластер kubernetes перескачив через две мажорные версии, то это повышает его когнитивную нагрузку, у него перестает хватать времени на основную его работу - разработку и улучшение продукта. Что в итоге приводит к проблемам и в админ части и в части продукта.
 </p>
 
-</aside></li>
-
+</div></li>
 </ul>
-</section>
-<section id="slide-org85d9fad">
-<h3 id="org85d9fad">Различие инструментов: Testcontainers</h3>
+</div>
+</div>
+<div id="outline-container-org0913a90" class="outline-3">
+<h3 id="org0913a90">Различие инструментов: Testcontainers</h3>
+<div class="outline-text-3" id="text-org0913a90">
 <p>
 Поднимайте локально в docker необходимые сервисы. Используйте библиотеки типа Testcontainers для интеграционного тестирования
 </p>
 
 <div class="org-src-container">
+<pre class="src src-java"><span style="color: #a9a1e1;">@Testcontainers</span>
+<span style="color: #51afef;">public</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">RedisBackedCacheIntTest</span> <span style="color: #51afef;">{</span>
 
-<pre><code class="java" >@Testcontainers
-public class RedisBackedCacheIntTest {
+    <span style="color: #a9a1e1;">@Container</span>
+    <span style="color: #51afef;">public</span> <span style="color: #ECBE7B;">GenericContainer</span> <span style="color: #dcaeea;">redis</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">GenericContainer</span><span style="color: #c678dd;">(</span>
+        DockerImageName.parse<span style="color: #98be65;">(</span><span style="color: #98be65;">"redis:5.0.3-alpine"</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>.withExposedPorts<span style="color: #c678dd;">(</span><span style="color: #da8548; font-weight: bold;">6379</span><span style="color: #c678dd;">)</span>;
 
-    @Container
-    public GenericContainer redis = new GenericContainer(
-        DockerImageName.parse("redis:5.0.3-alpine")).withExposedPorts(6379);
-
-    @Test
-    void redisIntegrationTest() {
-        // ...
-    }
-}
-</code></pre>
+    <span style="color: #a9a1e1;">@Test</span>
+    <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">redisIntegrationTest</span><span style="color: #c678dd;">()</span> <span style="color: #c678dd;">{</span>
+        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+    <span style="color: #c678dd;">}</span>
+<span style="color: #51afef;">}</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 
 
-</section>
-<section id="slide-orgfaef441">
-<h2 id="orgfaef441">Журналирование</h2>
+<div id="outline-container-org25bc3ac" class="outline-2">
+<h2 id="org25bc3ac">Журналирование</h2>
+<div class="outline-text-2" id="text-org25bc3ac">
 <p>
 Рассматривайте логи как поток событий. Приложение только должно выводить логи в stdout, за сбор и хранение отвечает среда выполнения.
 </p>
 
 
-<div id="org56244b4" class="figure">
+<div id="org285397a" class="figure">
 <p><img src="./img/logs.excalidraw.png" alt="logs.excalidraw.png" width="100%" />
 </p>
 </div>
 
-<aside class="notes">
+<div class="notes" id="org737e05f">
 <p>
 Хранение, обработка, визуализация, ротация логов это слишком важный и сложный процесс, неразумно его пытаться реализовывать каждый раз с нуля в каждом приложении
 </p>
 
-</aside>
+</div>
+</div>
 
-</section>
-<section id="slide-orgf672426">
-<h3 id="orgf672426">Используйте структурное логирование</h3>
+<div id="outline-container-orgc363186" class="outline-3">
+<h3 id="orgc363186">Используйте структурное логирование</h3>
+<div class="outline-text-3" id="text-orgc363186">
 <p>
 До:
 </p>
 <div class="org-src-container">
-
-<pre><code class="text" >2021-07-29 14:54:55.1623|INFO|New report created by user 4253
-</code></pre>
+<pre class="src src-text">2021-07-29 14:54:55.1623|INFO|New report created by user 4253
+</pre>
 </div>
 
 <p>
 После:
 </p>
 <div class="org-src-container">
-
-<pre><code class="js" >{
-    "TimeStamp": "2021-07-29 14:52:55.1623",
-    "Level": "Info",
-    "Message": "New report created",
-    "UserId": 4253,
-    "ReportId": 4567,
-    "TraceId": "a58fef40-90a3-4c40-a918-e1506e10bc3e"
+<pre class="src src-js">{
+    <span style="color: #98be65;">"TimeStamp"</span>: <span style="color: #98be65;">"2021-07-29 14:52:55.1623"</span>,
+    <span style="color: #98be65;">"Level"</span>: <span style="color: #98be65;">"Info"</span>,
+    <span style="color: #98be65;">"Message"</span>: <span style="color: #98be65;">"New report created"</span>,
+    <span style="color: #98be65;">"UserId"</span>: <span style="color: #da8548; font-weight: bold;">4253</span>,
+    <span style="color: #98be65;">"ReportId"</span>: <span style="color: #da8548; font-weight: bold;">4567</span>,
+    <span style="color: #98be65;">"TraceId"</span>: <span style="color: #98be65;">"a58fef40-90a3-4c40-a918-e1506e10bc3e"</span>
 }
-</code></pre>
+</pre>
 </div>
 
-<ul>
+<ul class="org-ul">
 <li>Позволяет искать логи по конкретным полям</li>
 <li>Нет уникальных паттернов разбора логов для каждого источника</li>
 <li>Добавление сквозного идентификатора процесса позволит связать логи с нескольких систем</li>
-
 </ul>
+</div>
+</div>
+</div>
 
 
-</section>
-<section id="slide-org2ab0386">
-<h2 id="org2ab0386">Задачи администрирования</h2>
+<div id="outline-container-org2fa521f" class="outline-2">
+<h2 id="org2fa521f">Задачи администрирования</h2>
+<div class="outline-text-2" id="text-org2fa521f">
 <p>
 Код и скрипты для администрирования должны поставляться вместе с приложением, чтобы избежать проблем с синхронизацией
 </p>
 
-<ul>
+<ul class="org-ul">
 <li><p>
 Скрипты миграции схемы БД должны храниться в репозитории приложения
 </p>
-<aside class="notes">
+<div class="notes" id="org7763663">
 <p>
 Если приложение использует БД, то скрипты по созданию всех объектов в этой БД должны храниться вместе с приложением и запускаться самими приложением при старте.
 Это упрощает деплой новых версий, тестирование самих миграций. И исключает ситуации, когда не совпадают версии схемы данных и запущенного приложения
 </p>
 
-</aside></li>
+</div></li>
 <li><p>
 Все разовые скрипты должны запускаться из контекста приложения
 </p>
-<aside class="notes">
+<div class="notes" id="org9531857">
 <p>
 Это позволяет приложению контролировать доступ скрипта к окружению, а так же позволяет скриптам использовать те же настройки, что и приложение. Это уменьшит вероятность, что вы запустите скрипт с неверными настройками.
 </p>
 
-</aside></li>
-
+</div></li>
 </ul>
 
 
-<div id="orgc515eba" class="figure">
+<div id="org18060d4" class="figure">
 <p><img src="./img/admin-process.excalidraw.png" alt="admin-process.excalidraw.png" width="60%" />
 </p>
 </div>
+</div>
+</div>
 
-</section>
-<section id="slide-orgd410354">
-<h2 id="orgd410354">Заключение</h2>
+<div id="outline-container-orgbc44c0c" class="outline-2">
+<h2 id="orgbc44c0c">Заключение</h2>
+<div class="outline-text-2" id="text-orgbc44c0c">
 <p>
 Следование 12 факторам позволяет добиться:
 </p>
-<ul>
+<ul class="org-ul">
 <li>Минимизации времени подключения нового разработчика к проекту</li>
 <li>Максимальной переносимость приложения между средами выполнения</li>
 <li>Возможности горизонтального маштабирования</li>
 <li>Использования непрерывного развертывания</li>
 <li>Готовности к разворачиванию в облаке</li>
-
 </ul>
 
-<aside class="notes">
+<div class="notes" id="orgb7b4c21">
 <p>
 12 факторов были написаны довольно давно, но в общем не утратили своей актуальности сегодня, во времена расцвета микросервисов. Хотя для микросервисов 12 факторов мало, для приемлемой работы. Как минимум стоит к ним добавить темы безопасности и мониторинга
 </p>
 
-</aside>
+</div>
+</div>
+</div>
 
-</section>
-<section id="slide-orgcc2078d">
-<h2 id="orgcc2078d">Link</h2>
-<ul>
+<div id="outline-container-orgc531645" class="outline-2">
+<h2 id="orgc531645">Link</h2>
+<div class="outline-text-2" id="text-orgc531645">
+<ul class="org-ul">
 <li><a href="https://12factor.net/">The Twelve-Factor App</a></li>
 <li><a href="https://architecturenotes.co/12-factor-app-revisited/">12 Factor App Revisited</a></li>
 <li><a href="https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications">7 Missing Factors from 12-Factor Applications</a></li>
 <li><a href="https://raw.githubusercontent.com/ffisk/books/master/beyond-the-twelve-factor-app.pdf">Beyond the Twelve-factor app</a></li>
 <li><a href="https://apolomodov.medium.com/review-team-topologies-part-1-205533a027c0">Обзор книги “Топологии команд”</a></li>
-
 </ul>
-</section>
-</section>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js"></script>
-<script>
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-
-controls: true,
-progress: true,
-history: false,
-center: true,
-slideNumber: false,
-rollingLinks: false,
-keyboard: true,
-mouseWheel: false,
-fragmentInURL: false,
-hashOneBasedIndex: false,
-pdfSeparateFragments: true,
-overview: true,
-
-transition: 'fade',
-transitionSpeed: 'default',
-
-// Plugins with reveal.js 4.x
-plugins: [ RevealNotes, RevealHighlight ],
-
-// Optional libraries used to extend reveal.js
-dependencies: [
-]
-
-});
-</script>
+</div>
 </body>
 </html>
